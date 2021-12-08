@@ -11,7 +11,7 @@ class Directory:
     def get_content(self):
         return
 
-    def move(self, item):
+    def move(self, item, dest):
         return
 
     def append(self, item):
