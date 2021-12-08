@@ -16,9 +16,12 @@ class Directory:
             self.items = []
             self.name = name
 
-    def delete(self, name):
-        if is_system_item(name):
-            self.items.remove(name)
+    def delete(self, item):
+        if is_system_item(item):
+            if item in self.items:
+                self.items.remove(item)
+            else:
+                raise ValueError("Item doesn't exists in this directory")
         else:
             print("Item isn't a System Item")
 

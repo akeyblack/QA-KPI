@@ -16,6 +16,6 @@ class Buffer:
             self.queue.append(item)
 
     def consume(self):
-        if len(self.items) == 0:
+        if len(self.queue) == 0:
             return None
         return self.queue.pop()

@@ -20,8 +20,19 @@ def test_directory():
     root.append(Binary("123", "123"))
     assert len(root.items) == 2
 
-    root.delete("dir1")
+    root.delete(dir1)
     assert len(root.items) == 1
+
+    root.append(123)
+    assert len(root.items) == 1
+
+    delete_test = False
+    try:
+        root.delete(dir1)
+    except ValueError:
+        delete_test = True
+
+    assert delete_test
 
 
 def test_binary():
@@ -29,9 +40,12 @@ def test_binary():
     binary = Binary("123", "321")
     root.append(binary)
     assert binary.name == "123" and binary.readfile() == "321"
-
-    root.append(Binary(123, 123))
-    assert len(root.items) == 1
+    error_test = False
+    try:
+        root.append(Binary(123, 123))
+    except ValueError:
+        error_test = True
+    assert error_test
 
 
 def test_log():
@@ -50,6 +64,3 @@ def test_buffer():
     assert buffer.consume() == 4355
 
     assert buffer.consume() is None
-
-
-
